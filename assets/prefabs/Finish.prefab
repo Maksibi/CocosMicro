@@ -1,0 +1,454 @@
+[
+  {
+    "__type__": "cc.Prefab",
+    "_name": "Finish",
+    "_objFlags": 0,
+    "__editorExtras__": {},
+    "_native": "",
+    "data": {
+      "__id__": 1
+    },
+    "optimizationPolicy": 0,
+    "persistent": false
+  },
+  {
+    "__type__": "cc.Node",
+    "_name": "Finish",
+    "_objFlags": 0,
+    "__editorExtras__": {},
+    "_parent": null,
+    "_children": [],
+    "_active": true,
+    "_components": [
+      {
+        "__id__": 2
+      },
+      {
+        "__id__": 4
+      }
+    ],
+    "_prefab": {
+      "__id__": 6
+    },
+    "_lpos": {
+      "__type__": "cc.Vec3",
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "_lrot": {
+      "__type__": "cc.Quat",
+      "x": 0,
+      "y": 0,
+      "z": 0,
+      "w": 1
+    },
+    "_lscale": {
+      "__type__": "cc.Vec3",
+      "x": 1,
+      "y": 1,
+      "z": 1
+    },
+    "_mobility": 0,
+    "_layer": 1073741824,
+    "_euler": {
+      "__type__": "cc.Vec3",
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "_id": ""
+  },
+  {
+    "__type__": "cc.MeshRenderer",
+    "_name": "",
+    "_objFlags": 0,
+    "__editorExtras__": {},
+    "node": {
+      "__id__": 1
+    },
+    "_enabled": true,
+    "__prefab": {
+      "__id__": 3
+    },
+    "sharedMaterials": [],
+    "_materials": [],
+    "_visFlags": 0,
+    "bakeSettings": {
+      "__type__": "cc.ModelBakeSettings",
+      "uvParam": {
+        "name": "uvParam",
+        "value": {
+          "x": 0,
+          "y": 0,
+          "z": 0,
+          "w": 0
+        },
+        "default": {
+          "type": "cc.Vec4",
+          "value": {
+            "x": {
+              "name": "x",
+              "value": 0,
+              "default": 0,
+              "type": "Number",
+              "readonly": false,
+              "visible": false,
+              "animatable": true,
+              "displayName": "i18n:ENGINE.classes.cc.Vec4.properties.x.displayName",
+              "tooltip": "i18n:ENGINE.classes.cc.Vec4.properties.x.tooltip",
+              "extends": []
+            },
+            "y": {
+              "name": "y",
+              "value": 0,
+              "default": 0,
+              "type": "Number",
+              "readonly": false,
+              "visible": false,
+              "animatable": true,
+              "displayName": "i18n:ENGINE.classes.cc.Vec4.properties.y.displayName",
+              "tooltip": "i18n:ENGINE.classes.cc.Vec4.properties.y.tooltip",
+              "extends": []
+            },
+            "z": {
+              "name": "z",
+              "value": 0,
+              "default": 0,
+              "type": "Number",
+              "readonly": false,
+              "visible": false,
+              "animatable": true,
+              "displayName": "i18n:ENGINE.classes.cc.Vec4.properties.z.displayName",
+              "tooltip": "i18n:ENGINE.classes.cc.Vec4.properties.z.tooltip",
+              "extends": []
+            },
+            "w": {
+              "name": "w",
+              "value": 0,
+              "default": 0,
+              "type": "Number",
+              "readonly": false,
+              "visible": false,
+              "animatable": true,
+              "displayName": "i18n:ENGINE.classes.cc.Vec4.properties.w.displayName",
+              "tooltip": "i18n:ENGINE.classes.cc.Vec4.properties.w.tooltip",
+              "extends": []
+            }
+          }
+        },
+        "type": "cc.Vec4",
+        "readonly": false,
+        "visible": false,
+        "animatable": true,
+        "displayName": "i18n:ENGINE.classes.cc.ModelBakeSettings.properties.uvParam.displayName",
+        "tooltip": "i18n:ENGINE.classes.cc.ModelBakeSettings.properties.uvParam.tooltip",
+        "extends": [
+          "cc.ValueType"
+        ]
+      },
+      "_bakeable": {
+        "name": "_bakeable",
+        "value": false,
+        "default": false,
+        "type": "Boolean",
+        "readonly": false,
+        "visible": false,
+        "animatable": true,
+        "displayName": "i18n:ENGINE.classes.cc.ModelBakeSettings.properties._bakeable.displayName",
+        "tooltip": "i18n:ENGINE.classes.cc.ModelBakeSettings.properties._bakeable.tooltip",
+        "extends": []
+      },
+      "_castShadow": {
+        "name": "_castShadow",
+        "value": false,
+        "default": false,
+        "type": "Boolean",
+        "readonly": false,
+        "visible": false,
+        "animatable": true,
+        "displayName": "i18n:ENGINE.classes.cc.ModelBakeSettings.properties._castShadow.displayName",
+        "tooltip": "i18n:ENGINE.classes.cc.ModelBakeSettings.properties._castShadow.tooltip",
+        "extends": []
+      },
+      "_receiveShadow": {
+        "name": "_receiveShadow",
+        "value": false,
+        "default": false,
+        "type": "Boolean",
+        "readonly": false,
+        "visible": false,
+        "animatable": true,
+        "displayName": "i18n:ENGINE.classes.cc.ModelBakeSettings.properties._receiveShadow.displayName",
+        "tooltip": "i18n:ENGINE.classes.cc.ModelBakeSettings.properties._receiveShadow.tooltip",
+        "extends": []
+      },
+      "_lightmapSize": {
+        "name": "_lightmapSize",
+        "value": 64,
+        "default": 64,
+        "type": "Number",
+        "readonly": false,
+        "visible": false,
+        "animatable": true,
+        "displayName": "i18n:ENGINE.classes.cc.ModelBakeSettings.properties._lightmapSize.displayName",
+        "tooltip": "i18n:ENGINE.classes.cc.ModelBakeSettings.properties._lightmapSize.tooltip",
+        "extends": []
+      },
+      "_useLightProbe": {
+        "name": "_useLightProbe",
+        "value": false,
+        "default": false,
+        "type": "Boolean",
+        "readonly": false,
+        "visible": false,
+        "animatable": true,
+        "displayName": "i18n:ENGINE.classes.cc.ModelBakeSettings.properties._useLightProbe.displayName",
+        "tooltip": "i18n:ENGINE.classes.cc.ModelBakeSettings.properties._useLightProbe.tooltip",
+        "extends": []
+      },
+      "_bakeToLightProbe": {
+        "name": "_bakeToLightProbe",
+        "value": true,
+        "default": true,
+        "type": "Boolean",
+        "readonly": false,
+        "visible": false,
+        "animatable": true,
+        "displayName": "i18n:ENGINE.classes.cc.ModelBakeSettings.properties._bakeToLightProbe.displayName",
+        "tooltip": "i18n:ENGINE.classes.cc.ModelBakeSettings.properties._bakeToLightProbe.tooltip",
+        "extends": []
+      },
+      "_reflectionProbeType": {
+        "name": "_reflectionProbeType",
+        "value": 0,
+        "default": 0,
+        "type": "Number",
+        "readonly": false,
+        "visible": false,
+        "animatable": true,
+        "displayName": "i18n:ENGINE.classes.cc.ModelBakeSettings.properties._reflectionProbeType.displayName",
+        "tooltip": "i18n:ENGINE.classes.cc.ModelBakeSettings.properties._reflectionProbeType.tooltip",
+        "extends": []
+      },
+      "_bakeToReflectionProbe": {
+        "name": "_bakeToReflectionProbe",
+        "value": true,
+        "default": true,
+        "type": "Boolean",
+        "readonly": false,
+        "visible": false,
+        "animatable": true,
+        "displayName": "i18n:ENGINE.classes.cc.ModelBakeSettings.properties._bakeToReflectionProbe.displayName",
+        "tooltip": "i18n:ENGINE.classes.cc.ModelBakeSettings.properties._bakeToReflectionProbe.tooltip",
+        "extends": []
+      },
+      "bakeable": {
+        "name": "bakeable",
+        "value": false,
+        "type": "Boolean",
+        "readonly": false,
+        "visible": true,
+        "animatable": true,
+        "group": {
+          "id": "LightMap",
+          "name": "i18n:ENGINE.classes.cc.ModelBakeSettings.groups.LightMap.displayName",
+          "displayOrder": 0,
+          "style": "section"
+        },
+        "displayName": "i18n:ENGINE.classes.cc.ModelBakeSettings.properties.bakeable.displayName",
+        "tooltip": "i18n:ENGINE.classes.cc.ModelBakeSettings.properties.bakeable.tooltip",
+        "extends": []
+      },
+      "castShadow": {
+        "name": "castShadow",
+        "value": false,
+        "type": "Boolean",
+        "readonly": false,
+        "visible": true,
+        "animatable": true,
+        "group": {
+          "id": "LightMap",
+          "name": "i18n:ENGINE.classes.cc.ModelBakeSettings.groups.LightMap.displayName"
+        },
+        "displayName": "i18n:ENGINE.classes.cc.ModelBakeSettings.properties.castShadow.displayName",
+        "tooltip": "i18n:ENGINE.classes.cc.ModelBakeSettings.properties.castShadow.tooltip",
+        "extends": []
+      },
+      "receiveShadow": {
+        "name": "receiveShadow",
+        "value": false,
+        "type": "Boolean",
+        "readonly": false,
+        "visible": true,
+        "animatable": true,
+        "group": {
+          "id": "LightMap",
+          "name": "i18n:ENGINE.classes.cc.ModelBakeSettings.groups.LightMap.displayName"
+        },
+        "displayName": "i18n:ENGINE.classes.cc.ModelBakeSettings.properties.receiveShadow.displayName",
+        "tooltip": "i18n:ENGINE.classes.cc.ModelBakeSettings.properties.receiveShadow.tooltip",
+        "extends": []
+      },
+      "lightmapSize": {
+        "name": "lightmapSize",
+        "value": 64,
+        "type": "Integer",
+        "readonly": false,
+        "visible": true,
+        "animatable": true,
+        "min": 0,
+        "max": 1024,
+        "group": {
+          "id": "LightMap",
+          "name": "i18n:ENGINE.classes.cc.ModelBakeSettings.groups.LightMap.displayName"
+        },
+        "displayName": "i18n:ENGINE.classes.cc.ModelBakeSettings.properties.lightmapSize.displayName",
+        "tooltip": "i18n:ENGINE.classes.cc.ModelBakeSettings.properties.lightmapSize.tooltip",
+        "extends": []
+      },
+      "useLightProbe": {
+        "name": "useLightProbe",
+        "value": false,
+        "type": "Boolean",
+        "readonly": false,
+        "visible": true,
+        "animatable": true,
+        "group": {
+          "id": "LightProbe",
+          "name": "i18n:ENGINE.classes.cc.ModelBakeSettings.groups.LightProbe.displayName",
+          "displayOrder": 1,
+          "style": "section"
+        },
+        "displayName": "i18n:ENGINE.classes.cc.ModelBakeSettings.properties.useLightProbe.displayName",
+        "tooltip": "i18n:ENGINE.classes.cc.ModelBakeSettings.properties.useLightProbe.tooltip",
+        "extends": []
+      },
+      "bakeToLightProbe": {
+        "name": "bakeToLightProbe",
+        "value": true,
+        "type": "Boolean",
+        "readonly": false,
+        "visible": true,
+        "animatable": true,
+        "group": {
+          "id": "LightProbe",
+          "name": "i18n:ENGINE.classes.cc.ModelBakeSettings.groups.LightProbe.displayName"
+        },
+        "displayName": "i18n:ENGINE.classes.cc.ModelBakeSettings.properties.bakeToLightProbe.displayName",
+        "tooltip": "i18n:ENGINE.classes.cc.ModelBakeSettings.properties.bakeToLightProbe.tooltip",
+        "extends": []
+      },
+      "reflectionProbe": {
+        "name": "reflectionProbe",
+        "value": 0,
+        "type": "Enum",
+        "readonly": false,
+        "visible": true,
+        "animatable": true,
+        "enumList": [
+          {
+            "name": "NONE",
+            "value": 0
+          },
+          {
+            "name": "BAKED_CUBEMAP",
+            "value": 1
+          },
+          {
+            "name": "PLANAR_REFLECTION",
+            "value": 2
+          },
+          {
+            "name": "BLEND_PROBES",
+            "value": 3
+          },
+          {
+            "name": "BLEND_PROBES_AND_SKYBOX",
+            "value": 4
+          }
+        ],
+        "group": {
+          "id": "ReflectionProbe",
+          "name": "i18n:ENGINE.classes.cc.ModelBakeSettings.groups.ReflectionProbe.displayName",
+          "displayOrder": 2,
+          "style": "section"
+        },
+        "displayName": "i18n:ENGINE.classes.cc.ModelBakeSettings.properties.reflectionProbe.displayName",
+        "tooltip": "i18n:ENGINE.classes.cc.ModelBakeSettings.properties.reflectionProbe.tooltip",
+        "extends": []
+      },
+      "bakeToReflectionProbe": {
+        "name": "bakeToReflectionProbe",
+        "value": true,
+        "type": "Boolean",
+        "readonly": false,
+        "visible": true,
+        "animatable": true,
+        "group": {
+          "id": "ReflectionProbe",
+          "name": "i18n:ENGINE.classes.cc.ModelBakeSettings.groups.ReflectionProbe.displayName"
+        },
+        "displayName": "i18n:ENGINE.classes.cc.ModelBakeSettings.properties.bakeToReflectionProbe.displayName",
+        "tooltip": "i18n:ENGINE.classes.cc.ModelBakeSettings.properties.bakeToReflectionProbe.tooltip",
+        "extends": []
+      }
+    },
+    "_mesh": null,
+    "_shadowCastingMode": 0,
+    "_shadowReceivingMode": 1,
+    "_shadowBias": 0,
+    "_shadowNormalBias": 0,
+    "_reflectionProbeId": -1,
+    "_reflectionProbeBlendId": -1,
+    "_reflectionProbeBlendWeight": 0,
+    "_enabledGlobalStandardSkinObject": false,
+    "shadowBias": 0,
+    "shadowNormalBias": 0,
+    "shadowCastingMode": 0,
+    "shadowCastingModeForInspector": false,
+    "receiveShadow": 1,
+    "receiveShadowForInspector": true,
+    "mesh": null,
+    "enableMorph": true,
+    "isGlobalStandardSkinObject": false,
+    "_enableMorph": true,
+    "_id": ""
+  },
+  {
+    "__type__": "cc.CompPrefabInfo",
+    "fileId": "TSmk/1F7nwkswx0kQLsG/m"
+  },
+  {
+    "__type__": "cfd39QLFb5Atb0QxV0FK1Wt",
+    "_name": "",
+    "_objFlags": 0,
+    "__editorExtras__": {},
+    "node": {
+      "__id__": 1
+    },
+    "_enabled": true,
+    "__prefab": {
+      "__id__": 5
+    },
+    "radius": 2.5,
+    "_id": ""
+  },
+  {
+    "__type__": "cc.CompPrefabInfo",
+    "fileId": "RqHEJj9HfDIoInWehj0++L"
+  },
+  {
+    "__type__": "cc.PrefabInfo",
+    "root": {
+      "__id__": 1
+    },
+    "asset": {
+      "__id__": 0
+    },
+    "fileId": "3fwdJyp/NPNYce4aX7rtB/",
+    "targetOverrides": null,
+    "nestedPrefabInstanceRoots": null,
+    "instance": null
+  }
+]
