@@ -8,12 +8,16 @@ export function createPrimitive(
     color: Color,
     position: Vec3,
     scale?: Vec3,
+    euler?: Vec3,
 ): Node {
     const node = new Node(name);
     parent.addChild(node);
     node.setPosition(position);
     if (scale) {
         node.setScale(scale);
+    }
+    if (euler) {
+        node.setRotationFromEuler(euler.x, euler.y, euler.z);
     }
 
     const renderer = node.addComponent(MeshRenderer);

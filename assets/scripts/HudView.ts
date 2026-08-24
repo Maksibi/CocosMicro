@@ -4,111 +4,31 @@ import {
     Canvas,
     Color,
     Component,
-    director,
     Graphics,
-    Input,
-    KeyCode,
     Label,
     Layers,
     Node,
     UITransform,
     Widget,
-    input,
     view,
 } from 'cc';
-import { CameraFollow } from './CameraFollow';
-import { Coin } from './Coin';
-import { FinishZone } from './FinishZone';
 import { Joystick } from './Joystick';
-import { tintMesh } from './PrimitiveUtil';
-import { PlayerController } from './PlayerController';
+import { RunSession } from './RunSession';
 
 const { ccclass } = _decorator;
 
-/** Unity analog: a tiny GameMode / HUD controller */
-@ccclass('GameManager')
-export class GameManager extends Component {
-    public static instance: GameManager | null = null;
-
+/** Builds and updates HUD. Knows nothing about level geometry. */
+@ccclass('HudView')
+export class HudView extends Component {
     public joystick: Joystick | null = null;
-    public finished = false;
-    public coins = 0;
-    public coinTotal = 0;
 
     private _scoreLabel: Label | null = null;
     private _hintLabel: Label | null = null;
     private _resultRoot: Node | null = null;
     private _resultLabel: Label | null = null;
+    private _session: RunSession | null = null;
 
-    onLoad(): void {
-        GameManager.instance = this;
-        this._buildWorld();
-        this._buildUi();
-        input.on(Input.EventType.KEY_DOWN, this._onKeyDown, this);
-    }
-
-    onDestroy(): void {
-        input.off(Input.EventType.KEY_DOWN, this._onKeyDown, this);
-        if (GameManager.instance === this) {
-            GameManager.instance = null;
-        }
-    }
-
-    public addCoin(): void {
-        if (this.finished) {
-            return;
-        }
-        this.coins += 1;
-        this._refreshHud();
-    }
-
-    public completeRun(): void {
-        if (this.finished) {
-            return;
-        }
-        this.finished = true;
-        if (this._resultRoot) {
-            this._resultRoot.active = true;
-        }
-        if (this._resultLabel) {
-            this._resultLabel.string = `Финиш!\nМонеты: ${this.coins} / ${this.coinTotal}\n\nНажмите R, чтобы начать заново`;
-        }
-        if (this._hintLabel) {
-            this._hintLabel.string = 'Забег закончен';
-        }
-    }
-
-    private _onKeyDown(event: { keyCode: KeyCode }): void {
-        if (this.finished && event.keyCode === KeyCode.KEY_R) {
-            director.loadScene('scene');
-        }
-    }
-
-    private _buildWorld(): void {
-        const scene = this.node.scene;
-        const placedCoins = scene.getComponentsInChildren(Coin);
-        this.coinTotal = placedCoins.length;
-        this.coins = 0;
-
-        const player = scene.getChildByName('Player') ?? scene.getChildByName('Capsule');
-        if (player) {
-            player.name = 'Player';
-            tintMesh(player, new Color(70, 140, 255, 255));
-            const controller = player.getComponent(PlayerController) ?? player.addComponent(PlayerController);
-            controller.coins = placedCoins;
-            controller.finishZones = scene.getComponentsInChildren(FinishZone);
-            controller.onCoinCollected = () => this.addCoin();
-            controller.onFinished = () => this.completeRun();
-        }
-
-        const camera = scene.getChildByName('Main Camera');
-        if (camera && player) {
-            const follow = camera.getComponent(CameraFollow) ?? camera.addComponent(CameraFollow);
-            follow.target = player;
-        }
-    }
-
-    private _buildUi(): void {
+    public build(): void {
         const scene = this.node.scene;
         const canvasNode = new Node('Canvas');
         canvasNode.layer = Layers.Enum.UI_2D;
@@ -135,20 +55,49 @@ export class GameManager extends Component {
 
         this._scoreLabel = this._makeLabel(canvasNode, 'ScoreLabel', 36, new Color(255, 255, 255, 255), 0, visible.height * 0.42);
         this._hintLabel = this._makeLabel(canvasNode, 'HintLabel', 22, new Color(220, 220, 220, 220), 0, visible.height * 0.36);
-        this._hintLabel.string = 'Расставьте Coin и Finish в сцене. Джойстик или WASD.';
-        this._refreshHud();
+        this._hintLabel.string = 'Джойстик или WASD. Соберите монеты на извилистой трассе.';
 
-        this._createJoystick(canvasNode, visible);
+        this._createJoystick(canvasNode);
         this._createResult(canvasNode, visible);
+        this.refresh();
+    }
 
-        const player = scene.getChildByName('Player');
-        const controller = player?.getComponent(PlayerController);
-        if (controller) {
-            controller.joystick = this.joystick;
+    public bind(session: RunSession): void {
+        this._session = session;
+        session.onChanged = () => this.refresh();
+        this.refresh();
+    }
+
+    public refresh(): void {
+        const session = this._session;
+        if (!session) {
+            return;
+        }
+
+        if (this._scoreLabel) {
+            this._scoreLabel.string = `Монеты: ${session.coins} / ${session.coinTotal}`;
+        }
+
+        if (!session.finished) {
+            if (this._resultRoot) {
+                this._resultRoot.active = false;
+            }
+            return;
+        }
+
+        if (this._resultRoot) {
+            this._resultRoot.active = true;
+        }
+        if (this._resultLabel) {
+            this._resultLabel.string =
+                `Финиш!\nМонеты: ${session.coins} / ${session.coinTotal}\n\nНажмите R, чтобы начать заново`;
+        }
+        if (this._hintLabel) {
+            this._hintLabel.string = 'Забег закончен';
         }
     }
 
-    private _createJoystick(canvas: Node, visible: { width: number; height: number }): void {
+    private _createJoystick(canvas: Node): void {
         const root = new Node('Joystick');
         root.layer = Layers.Enum.UI_2D;
         canvas.addChild(root);
@@ -184,8 +133,7 @@ export class GameManager extends Component {
         const dim = new Node('Dim');
         dim.layer = Layers.Enum.UI_2D;
         root.addChild(dim);
-        const dimUi = dim.addComponent(UITransform);
-        dimUi.setContentSize(visible.width, visible.height);
+        dim.addComponent(UITransform).setContentSize(visible.width, visible.height);
         const g = dim.addComponent(Graphics);
         g.fillColor = new Color(0, 0, 0, 160);
         g.rect(-visible.width / 2, -visible.height / 2, visible.width, visible.height);
@@ -225,14 +173,4 @@ export class GameManager extends Component {
         label.string = '';
         return label;
     }
-
-    private _refreshHud(): void {
-        if (this._scoreLabel) {
-            this._scoreLabel.string = `Монеты: ${this.coins} / ${this.coinTotal}`;
-        }
-    }
-}
-
-export function restartScene(): void {
-    director.loadScene('scene');
 }

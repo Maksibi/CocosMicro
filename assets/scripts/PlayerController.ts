@@ -1,4 +1,4 @@
-import { _decorator, Component, Vec3, find } from 'cc';
+import { _decorator, Component, Node, RigidBody, Vec3, find } from 'cc';
 import { Coin } from './Coin';
 import { FinishZone } from './FinishZone';
 import { Joystick } from './Joystick';
@@ -19,14 +19,18 @@ export class PlayerController extends Component {
     public onFinished: (() => void) | null = null;
 
     private _camera: Node | null = null;
+    private _body: RigidBody | null = null;
     private readonly _move = new Vec3();
-    private readonly _next = new Vec3();
+    private readonly _velocity = new Vec3();
     private readonly _fwd = new Vec3();
     private readonly _right = new Vec3();
 
     start(): void {
         this._camera = find('Main Camera');
-        this._refreshLevelObjects();
+        this._body = this.getComponent(RigidBody);
+        if (this.coins.length === 0 || this.finishZones.length === 0) {
+            this._refreshLevelObjects();
+        }
     }
 
     public refreshLevelObjects(): void {
@@ -35,18 +39,35 @@ export class PlayerController extends Component {
 
     update(dt: number): void {
         if (this.finished || !this.joystick) {
+            if (this._body) {
+                this._body.setLinearVelocity(Vec3.ZERO);
+            }
             return;
         }
 
         const dir = this.joystick.direction;
         if (dir.lengthSqr() > 0.02) {
             this._cameraRelativeMove(dir.x, dir.y);
-            this._move.normalize().multiplyScalar(this.moveSpeed * dt);
-            Vec3.add(this._next, this.node.position, this._move);
-            this.node.setPosition(this._next);
+            this._move.normalize().multiplyScalar(this.moveSpeed);
+
+            if (this._body) {
+                this._body.getLinearVelocity(this._velocity);
+                this._velocity.x = this._move.x;
+                this._velocity.z = this._move.z;
+                this._body.setLinearVelocity(this._velocity);
+            } else {
+                this._move.multiplyScalar(dt);
+                const pos = this.node.position;
+                this.node.setPosition(pos.x + this._move.x, pos.y, pos.z + this._move.z);
+            }
 
             const yaw = Math.atan2(this._move.x, this._move.z) * 180 / Math.PI;
             this.node.setRotationFromEuler(0, yaw, 0);
+        } else if (this._body) {
+            this._body.getLinearVelocity(this._velocity);
+            this._velocity.x = 0;
+            this._velocity.z = 0;
+            this._body.setLinearVelocity(this._velocity);
         }
 
         const pos = this.node.worldPosition;

@@ -394,7 +394,9 @@
         "extends": []
       }
     },
-    "_mesh": null,
+    "_mesh": {
+      "__uuid__": "1263d74c-8167-4928-91a6-4e2672411f47@17020"
+    },
     "_shadowCastingMode": 0,
     "_shadowReceivingMode": 1,
     "_shadowBias": 0,
@@ -409,7 +411,9 @@
     "shadowCastingModeForInspector": false,
     "receiveShadow": 1,
     "receiveShadowForInspector": true,
-    "mesh": null,
+    "mesh": {
+      "__uuid__": "1263d74c-8167-4928-91a6-4e2672411f47@17020"
+    },
     "enableMorph": true,
     "isGlobalStandardSkinObject": false,
     "_enableMorph": true,
